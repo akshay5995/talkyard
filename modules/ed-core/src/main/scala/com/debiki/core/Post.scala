@@ -260,7 +260,7 @@ case class DraftLocator(
       // a whatever-draft. So they won't just get lost or throw exceptions.
     case DraftType.Topic =>
       require(categoryId.isDefined && pageId.isDefined, s"Bad new topic draft: $this [TyE4WABG701]")
-      /* Ooops, the test above failed twice:
+      /* BUG Ooops, the test above failed twice.  Maybe fixed now, after 55ba93707eaf5 "Fix emb cmts draft bugs."? Couldn't reproduce this far.
         {"severity":"ERROR","context":{"reportLocation":{"filePath":"SafeActions.scala",
         "lineNumber":210,"functionName":"ed$server$http$SafeActions$$internalError","className":"ed.server.http.SafeActions"}},
         "message":
