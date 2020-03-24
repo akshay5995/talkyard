@@ -196,11 +196,43 @@ object SitePatch {
 
 
 
-/** REFACTOR  Change SimpleSitePatch to a ActionPatch? [ACTNPATCH] and do *not*
+/** REFACTOR  Change SimpleSitePatch to a ActionPatch? [ACTNPATCH] **edit: ActionBatch?
+  * see below**   and do *not*
   * generate a SitePatch to import — instead, iterate through the things
   * in the ActionPatch and call the correct Dao functions to make things
   * happen in the same way as if people were doing things via their web client.
   * All in the same transaction.
+  *
+  * Hmm, instead: ActionBatch = a group of actions/commands to do:
+  * (and does nothing, if there's an insertion conflict for example
+  * — and returns info about what was, and wasn't, done.)
+  *
+  * POST /-/v0/do-action-batch
+  * {
+  *   actionGroups: [{
+  *     createCategories: ...,
+  *     createPages: [{ ...a chat page ...}],
+  *     actionOptions: {
+  *       generateNotifications: false,
+  *     },
+  *   },
+  *   {
+  *     createPosts: [{ ... a chat message ...}],
+  *     actionOptions: {
+  *       generateNotifications: true,
+  *     },
+  *   }]
+  * }
+  *
+  * Or:
+  *   actionGroups: [{
+  *     editPosts: [{ ... ]}
+  *   }]
+  *
+  *   actionGroups: [{
+  *     deletePosts: [{ ... ]}
+  *   }]
+  *
   */
 case class SimpleSitePatch(
   upsertOptions: Option[UpsertOptions] = None,
