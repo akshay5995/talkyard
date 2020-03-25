@@ -671,6 +671,7 @@ const LoginAndSignupSettings = createFactory({
             "with username and password. Instead, they just type a name and email address. " +
             "This can be good for embedded comments sites, so people won't skip posting a comment, " +
             "just because they think it's too cumbersome to create a real account.",
+            // !! explain why disabled, if disabled — e.g. becaue Require-verified-email.
           disabled: !canEnableGuestLogin,
           getter: (s: Settings) => s.allowGuestLogin,
           update: (newSettings: Settings, target) => {
