@@ -164,6 +164,7 @@ ${ htmlToPaste ? htmlToPaste : `
       numPostsTotal?: number,
     }) => {
 
+    // -2: Skip title and body posts.
     const numRepliesTotal = ps.numPostsTotal ? ps.numPostsTotal - 2 : 0;
 
     assert.eq(page.htmlTagCssClasses, "");

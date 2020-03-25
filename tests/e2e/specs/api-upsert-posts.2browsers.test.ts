@@ -156,7 +156,7 @@ describe("api-upsert-posts   TyT60RKNJF24C", () => {
 
   it("Maja logs in", () => {
     majasBrowser.go2(siteIdAddress.origin);
-    majasBrowser.complex.loginWithPasswordViaTopbar((maja);
+    majasBrowser.complex.loginWithPasswordViaTopbar(maja);
   });
 
   it("... posts a topic", () => {
