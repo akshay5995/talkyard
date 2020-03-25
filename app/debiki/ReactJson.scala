@@ -1088,9 +1088,15 @@ object JsonMaker {
         : JsObject = {
     // Only include settings that differ from the default.
 
+    // NOTE somewhere:  whitelist + require appr = req appr for not whitelisted? & Anon tips
+
     var json = Json.obj(
       // The defaults depend on if these login methods are defined in the config files,
       // so need to always include, client side (client side, default values = unknown).
+      // BUG: After restoring a dump to a new server, then, the config file
+      // might *not* have any OpenAuth settings — but the restored settings3
+      // table might have OpenAuth logins set to Enabled. That causes errors,
+      // later when people try to OpenAuth login.
       "enableGoogleLogin" -> settings.enableGoogleLogin,
       "enableFacebookLogin" -> settings.enableFacebookLogin,
       "enableTwitterLogin" -> settings.enableTwitterLogin,

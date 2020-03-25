@@ -110,6 +110,8 @@ const LoginDialog = createClassAndFactory({
 
     // Don't allow logging in as someone else, when impersonating someone, because it's unclear
     // what should then happen: does one stop impersonating? or not?
+    // ADD Back + STOP BUTTON
+    // + allow test-- (not only e2e-test-)
     if (getSetCookie('esCoImp')) {
       util.openDefaultStupidDialog({
         preventClose: true,
