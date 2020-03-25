@@ -206,20 +206,20 @@ export default function addApiChatTestSteps(variants: {
     });
 
     it("... Finds two people", () => {
-      assert.eq(listUsersResponse.members.length, 2);
+      assert.eq(listUsersResponse.users.length, 2);
     });
 
     let charlieFromApi: UserIdName;
 
     it("... namely Charlie", () => {
-      charlieFromApi = listUsersResponse.members[0];
+      charlieFromApi = listUsersResponse.users[0];
       assert.eq(charlieFromApi.username, charlieExtUser.username);
     });
 
     let chumaFromApi: UserIdName;
 
     it("... and Chuma", () => {
-      chumaFromApi = listUsersResponse.members[1];
+      chumaFromApi = listUsersResponse.users[1];
       assert.eq(chumaFromApi.username, chumaExtUser.username);
     });
 

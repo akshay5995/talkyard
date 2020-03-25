@@ -808,6 +808,7 @@ package object core {
   case class PageParticipant(
     pageId: PageId,
     userId: UserId,
+    // Change to isPageMember: Boolean, and use the audit log to remember who did what?
     addedById: Option[UserId],
     removedById: Option[UserId],
     inclInSummaryEmailAtMins: Int,

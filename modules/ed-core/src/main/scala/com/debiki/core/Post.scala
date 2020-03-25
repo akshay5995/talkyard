@@ -332,7 +332,7 @@ case class Draft(
   */
 case class Post(   // [exp] ok use
   id: PostId,
-  extImpId: Option[ExtId] = None,
+  extImpId: Option[ExtId] = None,   // RENAME extId
   pageId: PageId,
   nr: PostNr,
   parentNr: Option[PostNr],
@@ -746,7 +746,7 @@ object Post {
           (None, None)
     }
 
-    Post(    // [DUPPSTCRT]
+    Post(    // dupl code [DUPPSTCRT]
       id = uniqueId,
       extImpId = extImpId,
       pageId = pageId,
