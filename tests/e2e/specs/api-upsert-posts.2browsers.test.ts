@@ -308,7 +308,7 @@ describe("api-upsert-posts   TyT60RKNJF24C", () => {
 
   let replyNotfLink: string;
 
-  it("Maja fins a page link in a notf email", () => {
+  it("Maja finds a page link in a notf email", () => {
     replyNotfLink = utils.findFirstLinkToUrlIn(
         // Currently the link uses the page id, not url slug.
         // So, not:  + firstUpsertedPage.urlPaths.canonical
