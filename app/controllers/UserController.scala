@@ -1272,7 +1272,7 @@ class UserController @Inject()(cc: ControllerComponents, edContext: EdContext)
   private def listAllUsersImpl(usernamePrefix: String, request: ApiRequest[_]): JsArray = {
     // Also load deleted anon12345 members. Simpler, and they'll typically be very few or none. [5KKQXA4]
     // ... stop doing that?
-    val members = request.dao.loadUsersWithPrefix(usernamePrefix)
+    val members = request.dao.loadUsersWithUsernamePrefix(usernamePrefix, limit = 50)
     JsArray(
       members map { member =>
         // [PUB_API] .ts: ListUsersApiResponse, ListGroupsApiResponse, ListMembersApiResponse

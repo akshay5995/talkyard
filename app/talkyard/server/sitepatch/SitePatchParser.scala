@@ -1393,15 +1393,7 @@ case class SitePatchParser(context: EdContext) {
 
     try {
       val anyPostTypeInt = readOptInt(jsObj, "postType")
-      throwForbiddenIf(
-          anyPostTypeInt.isSomethingButNot(PostType.Normal.toInt) &&
-          anyPostTypeInt.isSomethingButNot(PostType.ChatMessage.toInt) &&
-          anyPostTypeInt.isSomethingButNot(PostType.BottomComment.toInt),
-        "TyE70536SRKT", "Currently only PostType.Normal, ChatMessage and ProgressPost allowed")
-
-      val postType: PostType =
-        anyPostTypeInt.flatMap(PostType.fromInt) getOrElse PostType.Normal
-
+      val postType: PostType = anyPostTypeInt.flatMap(PostType.fromInt) getOrElse PostType.Normal
       Good(SimplePostPatch(
         extId = extId,
         postType = postType,

@@ -688,6 +688,21 @@ case class SimplePostPatch(
   ) {
 
   throwIllegalArgumentIf(body.isEmpty, "TyE602MKDPA", "Text is empty")
+  throwIllegalArgumentIf(postType == PostType.ChatMessage && parentNr.isDefined,
+    "TyE50RKT0R2", o"""Currently chat messages cannot have a parentNr field; replying to other
+    chat messages not yet implemented. Remove 'parentNr' please.""")
+
+  throwIllegalArgumentIf(parentNr.exists(_ < BodyNr),
+    "TyE6033MKSHUW2", s"parentNr is < BodyNr (BodyNr is $BodyNr), parentNr: $parentNr")
+
+  throwIllegalArgumentIf(pageRef.canOnlyBeToParticipant,
+    "TyE630RKDNW2J", s"The *page* ref is to a user/participant: $pageRef")
+
+  throwIllegalArgumentIf(
+    postType != PostType.Normal && postType != PostType.ChatMessage &&
+      postType != PostType.BottomComment,
+    "TyE306WKVHN6", s"Upserting posts of type $postType currently not supported via the API")
+
   Validation.findExtIdProblem(extId) foreach { problem =>
     throwIllegalArgument("TyE306DKZH", s"Bad post extId: $problem")
   }
