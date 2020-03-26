@@ -461,7 +461,13 @@ trait PostsDao {
       }
 
       val (post, notfs) = anyLastMessageSameUserRecently match {
-        case Some(lastMessage) if !lastMessage.isDeleted && lastMessage.tyype == PostType.ChatMessage =>
+        case Some(lastMessage)
+            if !lastMessage.isDeleted &&
+              lastMessage.tyype == PostType.ChatMessage &&
+              // If mentioning other users — then create a new Post, so they won't
+              // see the text maybe intended for others, in the previous message.
+              // TESTS_MISSING
+              textAndHtml.usernameMentions.isEmpty =>
           appendToLastChatMessage(lastMessage, textAndHtml, byWho, spamRelReqStuff, tx)
         case _ =>
           val (post, notfs) =
